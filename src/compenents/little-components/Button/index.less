@@ -1,0 +1,35 @@
+@button-width: 100%;
+@button-padding: 100%;
+
+#colors() {
+  default: var(--accent-blue-color);
+  desabled: var(--muted-color);
+}
+
+#bundle() {
+  .button-style {
+    width: @button-width;
+    padding: 10px 0;
+
+    display: flex;
+    justify-content: center;
+
+    font-size: calc(var(--base-size) * 1.7);
+    border: none;
+    border-radius: var(--border-radius);
+    color: white;
+
+    cursor: pointer;
+  }
+}
+
+.default {
+  background-color: #colors[default];
+  #bundle.button-style();
+}
+
+.disabled {
+  cursor: not-allowed;
+  background-color: #colors[desabled];
+  #bundle.button-style();
+}
