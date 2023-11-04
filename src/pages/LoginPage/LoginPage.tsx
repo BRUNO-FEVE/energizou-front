@@ -1,20 +1,15 @@
 import "./LoginPage.less";
+import logo from "../../assets/energizou-logo.png";
+import LoginCard from "../../compenents/LoginCard/LoginCard";
 
 export default function LoginPage() {
   return (
     <div className="login-page">
-      <div className="text-filed">
-        <p>Login: </p>
-        <input type="text" />
+      <div className="logo-wrapper">
+        <img src={logo} alt="Energizou Logo" />
+        <p>Faça o login para continuar</p>
       </div>
-      <div className="text-filed">
-        <p>Senha: </p>
-        <input type="text" />
-      </div>
-      <div>
-        <p>Não tem conte? </p>
-        <a href="">Cadratre-se</a>
-      </div>
+      <LoginCard />
     </div>
   );
 }

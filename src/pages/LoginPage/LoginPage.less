@@ -1,20 +1,27 @@
+@logo-width: calc(var(--base-size) * 30);
+@space-height: calc(var(--base-size) * 7);
+
 .login-page {
-  background-color: white;
-  color: black;
-
-  width: 100vw;
-  height: 100vh;
-
   display: flex;
   flex-direction: column;
-  gap: 10px;
-
-  justify-content: center;
-  text-align: center;
+  gap: @space-height;
 }
 
-.text-filed {
+.logo-wrapper {
   display: flex;
-  flex-direction: row;
-  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: @logo-width;
+    height: 5rem;
+    object-fit: contain;
+  }
+
+  p {
+    margin: 0;
+    color: var(--muted-color);
+    font-size: 17px;
+    font-weight: 700;
+  }
 }

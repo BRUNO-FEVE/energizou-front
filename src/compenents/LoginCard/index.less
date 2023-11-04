@@ -1,0 +1,42 @@
+@shadow-size: calc(var(--base-size) * 0.3);
+@padding-card: calc(var(--base-size * 2));
+@card-border-radius: calc(var(--border-radius) * 7);
+
+.login-card {
+  width: 350px;
+  padding: 25px 30px;
+
+  color: black;
+  border-radius: @card-border-radius;
+  box-shadow: 2px 2px 20px -5px var(--muted-color);
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  justify-content: center;
+  text-align: center;
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .register {
+    font-size: calc(var(--base-size) * 1.8);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    a {
+      color: var(--accent-blue-color);
+      text-decoration: underline;
+      font-weight: 500;
+    }
+  }
+}
