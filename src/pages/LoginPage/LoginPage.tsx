@@ -1,6 +1,6 @@
 import "./LoginPage.less";
 import logo from "../../assets/energizou-logo.png";
-import LoginCard from "../../compenents/LoginCard/LoginCard";
+import LoginCard from "../../components/LoginCard/LoginCard";
 
 export default function LoginPage() {
   return (
