@@ -3,13 +3,14 @@
 
 #colors() {
   default: var(--accent-blue-color);
+  yellow: var(--accent-yellow-color);
   desabled: var(--muted-color);
 }
 
 #bundle() {
   .button-style {
-    width: @button-width;
-    padding: 10px 0;
+    width: fit-content;
+    padding: 10px 20px;
 
     display: flex;
     justify-content: center;
@@ -24,8 +25,15 @@
 }
 
 .default {
-  background-color: #colors[default];
   #bundle.button-style();
+}
+
+.blue {
+  background-color: #colors[default];
+}
+
+.yellow {
+  background-color: #colors[yellow];
 }
 
 .disabled {
