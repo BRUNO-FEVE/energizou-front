@@ -1,3 +1,5 @@
+@mobile: 970px;
+
 .home {
   width: 100%;
   display: flex;
@@ -8,7 +10,9 @@
   padding: 50px 0;
 
   .top-bar {
-    width: 1000px;
+    width: 80%;
+    padding: 0 30px;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -20,20 +24,42 @@
       gap: 20px;
       width: 100%;
 
+      div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
       h1 {
         font-size: 25px;
       }
 
       input {
         height: fit-content;
-      }
-
-      div {
-        width: 300px;
+        width: 20vw;
       }
 
       button {
         width: 100px;
+      }
+    }
+  }
+
+  @media (max-width: @mobile) {
+    .top-bar {
+      flex-direction: column;
+      gap: 30px;
+
+      .left-side {
+        justify-content: space-evenly;
+
+        div {
+          width: 100%;
+        }
+
+        input {
+          width: 100%;
+        }
       }
     }
   }

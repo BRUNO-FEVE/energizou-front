@@ -51,8 +51,8 @@ export default function HomePage() {
     <div className="home">
       <div className="top-bar">
         <div className="left-side">
-          <h1>Empresas:</h1>
           <div>
+            <h1>Empresas:</h1>
             <TextField
               placeholder="Buscar por cnpj"
               variant="single"
