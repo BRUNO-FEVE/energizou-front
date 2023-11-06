@@ -12,7 +12,6 @@ A aplicação front-end utiliza as seguintes bibliotecas e frameworks:
 - **⭐ TypeScript**: Linguagem de programação com tipagem forte que é baseada em JavaScript, usada para garantir maior consistência do código.
 - **⭐ LESS**: Compilador de CSS.
 - **⭐ API de CEP**: Utilizar a API para preenchimento automático do campo de endereço. ([ViaCEP](https://viacep.com.br))
-  
 - **axios**: Cliente HTTP baseado em promessas para fazer requisições à API.
 - **dotenv**: Carrega variáveis de ambiente de um arquivo `.env` para `process.env`.
 - **react**: Biblioteca JavaScript para construir interfaces de usuário.
