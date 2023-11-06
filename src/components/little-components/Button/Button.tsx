@@ -1,28 +1,25 @@
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, ReactElement } from "react";
 import "./index.less";
+import { Link } from "react-router-dom";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
-type variant = "disabled" | "default";
-type color = "blue" | "yellow";
+type variant = "disabled" | "default" | "outline";
+type color = "blue" | "yellow" | "red";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string;
   variant: variant;
   color?: color;
 }
 
-export default function Button({
-  label,
-  variant,
-  color,
-  ...props
-}: ButtonProps) {
+function Button({ variant, color, children, ...props }: ButtonProps) {
   const variants: Record<variant, string> = {
     disabled: "disabled",
     default: "default",
+    outline: "outline",
   };
 
   const buttonColor = color ? color : "blue";
-  const style = `${variants[variant]} ${buttonColor}`;
+  const style = `${variants[variant]} ${buttonColor} ${props.className}`;
 
   return (
     <button
@@ -30,7 +27,37 @@ export default function Button({
       className={style}
       disabled={style === "disabled" ? true : false}
     >
-      {label}
+      {children}
     </button>
   );
 }
+
+interface NavButtonProps extends React.RefAttributes<HTMLAnchorElement> {
+  endpoint: string;
+  children: ReactElement;
+}
+
+function NavButton({ endpoint, children, ...props }: NavButtonProps) {
+  return (
+    <Link {...props} to={endpoint} className="nav-button">
+      {children}
+    </Link>
+  );
+}
+
+interface GoBackButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  endpoint: string;
+}
+
+function GoBackButton({ endpoint, ...props }: GoBackButtonProps) {
+  return (
+    <Link to={endpoint} className="back-button">
+      <button {...props} className="outline blue">
+        <BsFillArrowLeftCircleFill />
+        Voltar
+      </button>
+    </Link>
+  );
+}
+
+export { Button, NavButton, GoBackButton };

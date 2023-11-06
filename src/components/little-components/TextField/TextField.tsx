@@ -9,6 +9,8 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   variant: variant;
   text?: text;
+  subtitle?: string;
+  validation?: boolean;
 }
 
 export default function TextField({
@@ -16,6 +18,8 @@ export default function TextField({
   placeholder,
   variant,
   text,
+  subtitle,
+  validation,
   ...props
 }: TextFieldProps) {
   const textClass = text ? text : "p";
@@ -29,6 +33,9 @@ export default function TextField({
         className={`${variant} ${textClass} ${disableClass}`}
         disabled={props.disabled}
       />
+      {subtitle ? (
+        <p className={validation ? "agree" : "disagree"}>{subtitle}</p>
+      ) : null}
     </div>
   );
 }

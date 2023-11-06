@@ -4,7 +4,9 @@
 #colors() {
   default: var(--accent-blue-color);
   yellow: var(--accent-yellow-color);
+  red: rgb(203, 41, 41);
   desabled: var(--muted-color);
+  outline: var(--muted-color);
 }
 
 #bundle() {
@@ -13,12 +15,17 @@
     padding: 10px 20px;
 
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
     justify-content: center;
 
     font-size: calc(var(--base-size) * 1.7);
     border: none;
     border-radius: var(--border-radius);
-    color: white;
+
+    animation-duration: var(animation-duration);
+    transition: ease-in;
 
     cursor: pointer;
   }
@@ -26,6 +33,7 @@
 
 .default {
   #bundle.button-style();
+  color: white;
 }
 
 .blue {
@@ -36,8 +44,48 @@
   background-color: #colors[yellow];
 }
 
+.red {
+  background-color: #colors[red];
+}
+
 .disabled {
+  #bundle.button-style();
   cursor: not-allowed;
   background-color: #colors[desabled];
+  color: white;
+}
+
+.outline {
   #bundle.button-style();
+  background-color: transparent;
+  border-radius: var(--border-radius);
+}
+
+.outline:hover {
+  text-decoration: solid;
+}
+
+.nav-button {
+  text-decoration: none;
+
+  @media (max-width: 975px) {
+    width: 100%;
+  }
+}
+
+.back-button {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+
+  text-decoration: none;
+
+  button {
+    font-size: 15px;
+  }
+}
+
+.back-button:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
