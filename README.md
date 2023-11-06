@@ -1,27 +1,31 @@
-# React + TypeScript + Vite
+# Energizou - Front-End da Aplicação Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Front-End
 
-Currently, two official plugins are available:
+Neste desafio técnico, também desenvolvi a parte front-end da aplicação web para interagir com a API RESTful criada.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Especificações
 
-## Expanding the ESLint configuration
+A aplicação front-end utiliza as seguintes bibliotecas e frameworks:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React**: Biblioteca JavaScript para construir interfaces de usuário.
+- **⭐ TypeScript**: Linguagem de programação com tipagem forte que é baseada em JavaScript, usada para garantir maior consistência do código.
+- **⭐ LESS**: Compilador de CSS.
+- **axios**: Cliente HTTP baseado em promessas para fazer requisições à API.
+- **dotenv**: Carrega variáveis de ambiente de um arquivo `.env` para `process.env`.
+- **react**: Biblioteca JavaScript para construir interfaces de usuário.
+- **react-dom**: Fornece métodos específicos do DOM que podem ser usados no nível de topo da aplicação.
+- **react-icons**: Permite a inclusão de ícones de bibliotecas populares em projetos React.
+- **react-router-dom**: Facilita a navegação entre componentes em aplicações web React.
+- **react-toastify**: Adiciona notificações leves e configuráveis à aplicação React.
 
-- Configure the top-level `parserOptions` property like this:
+Inclua estas dependências na sua aplicação através do gerenciador de pacotes `yarn` para garantir a funcionalidade correta do front-end.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+## Instalação
+
+Para iniciar o front-end da aplicação, siga os passos a seguir:
+
+```bash
+   yarn install
+   yarn dev
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
