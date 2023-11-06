@@ -1,10 +1,10 @@
 import { Link, Navigate, redirect } from "react-router-dom";
-import Button from "../little-components/Button/Button";
 import TextField from "../little-components/TextField/TextField";
 import "./index.less";
 import axios from "axios";
 import { ChangeEvent, useContext, useState } from "react";
 import { EntitiesContext } from "../../context/entitiesContext";
+import { Button } from "../little-components/Button/Button";
 
 export default function LoginCard() {
   // const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -65,12 +65,9 @@ export default function LoginCard() {
         <p>Não tem conte? </p>
         <Link to={"/register"}>Cadrastre-se</Link>
       </div>
-      <Button
-        type="button"
-        label="Entrar"
-        variant="default"
-        onClick={handleClick}
-      />
+      <Button type="button" variant="default" onClick={handleClick}>
+        Entrar
+      </Button>
     </form>
   );
 }

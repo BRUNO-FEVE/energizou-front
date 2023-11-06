@@ -1,10 +1,15 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import "./index.less";
-import { EntitiesContext, companyData } from "../../context/entitiesContext";
-import Button from "../../components/little-components/Button/Button";
+import { EntitiesContext } from "../../context/entitiesContext";
 import { BsFillBuildingFill } from "react-icons/bs";
 import TextField from "../../components/little-components/TextField/TextField";
 import axios from "axios";
+import {
+  Button,
+  GoBackButton,
+} from "../../components/little-components/Button/Button";
+import { ToastContainer, toast } from "react-toastify";
+import { ToastProps } from "../../components/little-components/Toast/Toast";
 
 const CEP_LENGTH = 8;
 
@@ -15,14 +20,14 @@ interface CompanyPageProps {
 }
 
 export default function CompanyPage({ variant }: CompanyPageProps) {
-  const { company, user } = useContext(EntitiesContext);
+  const { company, setCompany, user } = useContext(EntitiesContext);
   const [isEditable, setIsEditable] = useState(false);
-  const [currentCompany, setCurrentCompany] = useState<companyData>({
+  const [currentCompany, setCurrentCompany] = useState({
     name: "",
     cnpj: "",
     address: "",
-    address_number: 0,
-    cep: 0,
+    address_number: "",
+    cep: "",
     phone: "",
   });
 
@@ -64,19 +69,51 @@ export default function CompanyPage({ variant }: CompanyPageProps) {
       }
     );
 
+    if (companyUpdated) {
+      if (companyUpdated.status === 200) {
+        toast.info("Empresa Atualizada!", ToastProps);
+      }
+    }
+
     console.log(companyUpdated);
   };
 
+  const handleCreate = async () => {
+    const response = await axios.post(
+      `http://localhost:3000/company/${user?.id}`,
+      {
+        cnpj: currentCompany.cnpj,
+        name: currentCompany.name,
+        cep: currentCompany.cep,
+        address: currentCompany.address,
+        address_number: parseInt(currentCompany.address_number.toString()),
+        phone: parseInt(currentCompany.phone),
+      }
+    );
+
+    if (response) {
+      if (response.status === 201) {
+        toast.info("Empresa Criada!", ToastProps);
+      }
+    }
+  };
+
+  const cleanCompanyContext = () => {
+    setCompany(null);
+  };
+
   useEffect(() => {
-    if (company) {
+    if (company && variant === "update") {
       setCurrentCompany({
         name: company?.name,
         cnpj: company?.cnpj,
         address: company?.address,
-        address_number: company?.address_number,
-        cep: company?.cep,
+        address_number: company?.address_number.toString(),
+        cep: company?.cep.toString(),
         phone: company?.phone,
       });
+    } else {
+      setIsEditable(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -90,22 +127,23 @@ export default function CompanyPage({ variant }: CompanyPageProps) {
 
   return (
     <div className="screen">
+      <GoBackButton endpoint="/home" onClick={cleanCompanyContext} />
       <div className="company-card">
         <div className="top-side">
           <div className="left-side">
             <BsFillBuildingFill className="icon" />
             <h1>Empresa</h1>
           </div>
-          <Button
-            label={"Editar"}
-            variant={"default"}
-            onClick={handleEditButton}
-          />
+          {variant === "update" ? (
+            <Button variant={"default"} onClick={handleEditButton}>
+              Editar
+            </Button>
+          ) : null}
         </div>
         <div className="update">
           <TextField
             variant="default"
-            label="Name: "
+            label="Nome: "
             text="h1"
             name="name"
             value={currentCompany.name}
@@ -115,6 +153,8 @@ export default function CompanyPage({ variant }: CompanyPageProps) {
           <TextField
             variant="default"
             label="CNPJ: "
+            subtitle="Apenas digite os numeros: (XX.XXX.XXX/XXXX-XX)."
+            validation={currentCompany.cnpj.length === 14}
             text="h1"
             name="cnpj"
             value={currentCompany.cnpj}
@@ -125,6 +165,8 @@ export default function CompanyPage({ variant }: CompanyPageProps) {
             <TextField
               variant="default"
               label="CEP: "
+              subtitle="Apenas digite os numeros: (XXXXX-XXX)."
+              validation={currentCompany.cep.length === 8}
               text="h1"
               name="cep"
               value={currentCompany.cep}
@@ -134,6 +176,8 @@ export default function CompanyPage({ variant }: CompanyPageProps) {
             <TextField
               variant="default"
               label="Telefone: "
+              subtitle="Apenas digite os numeros: (+55 (XX) XXXXX-XXXX)."
+              validation={currentCompany.phone.length === 11}
               text="h1"
               name="phone"
               value={currentCompany.phone}
@@ -161,12 +205,16 @@ export default function CompanyPage({ variant }: CompanyPageProps) {
               disabled={!isEditable}
             />
           </div>
-          <Button
-            label={"Salvar"}
-            variant={"default"}
-            onClick={variant === "create" ? undefined : handleUpdate}
-          />
+          {isEditable ? (
+            <Button
+              variant={"default"}
+              onClick={variant === "create" ? handleCreate : handleUpdate}
+            >
+              Salvar
+            </Button>
+          ) : null}
         </div>
+        <ToastContainer icon={false} closeButton={false} />
       </div>
     </div>
   );

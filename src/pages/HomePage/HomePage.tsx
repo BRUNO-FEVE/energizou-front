@@ -1,12 +1,16 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import CompanyList from "../../components/CompanyList/CompanyList";
-import Button from "../../components/little-components/Button/Button";
 import TextField from "../../components/little-components/TextField/TextField";
 import "./index.less";
 import axios from "axios";
 import { EntitiesContext } from "../../context/entitiesContext";
 import { CompanyListCellProps } from "../../components/little-components/CompanyListCell/CompanyListCell";
 import { Navigate } from "react-router-dom";
+import {
+  Button,
+  NavButton,
+} from "../../components/little-components/Button/Button";
+import { BsFillBuildingFill } from "react-icons/bs";
 
 export default function HomePage() {
   const [companies, setCompanies] = useState<CompanyListCellProps[] | null>(
@@ -44,7 +48,7 @@ export default function HomePage() {
   }, []);
 
   if (company) {
-    return <Navigate to={"/company"} />;
+    return <Navigate to={"/update-company"} />;
   }
 
   return (
@@ -52,6 +56,7 @@ export default function HomePage() {
       <div className="top-bar">
         <div className="left-side">
           <div>
+            <BsFillBuildingFill className="icon" />
             <h1>Empresas:</h1>
             <TextField
               placeholder="Buscar por cnpj"
@@ -59,18 +64,15 @@ export default function HomePage() {
               onChange={handleChangeInputField}
             />
           </div>
-          <Button
-            label="Buscar"
-            variant="default"
-            value={cnpj}
-            onClick={searchCompanyByCnpj}
-          />
+          <Button variant="default" value={cnpj} onClick={searchCompanyByCnpj}>
+            Buscar
+          </Button>
         </div>
-        <Button
-          label="Cadastrar Empresa"
-          variant="default"
-          color="yellow"
-        ></Button>
+        <NavButton endpoint={"/create-company"}>
+          <Button variant="default" color="yellow" className="create-button">
+            Cadastrar Empresa
+          </Button>
+        </NavButton>
       </div>
       <CompanyList companies={companies} />
     </div>
