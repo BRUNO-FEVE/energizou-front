@@ -10,7 +10,14 @@ export default function AppRouter() {
       <Route path="/" element={<LoginPage />} />
       <Route path="/register" element={<ResgisterPage />} />
       <Route path="/home" element={<HomePage />} />
-      <Route path="/company" element={<CompanyPage variant="update" />} />
+      <Route
+        path="/update-company"
+        element={<CompanyPage variant="update" />}
+      />
+      <Route
+        path="/create-company"
+        element={<CompanyPage variant="create" />}
+      />
     </Routes>
   );
 }

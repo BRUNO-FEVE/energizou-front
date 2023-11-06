@@ -23,7 +23,7 @@ interface DefaultEntitiesProps {
   user: userData | null;
   company: companyData | null;
   setUser: (user: userData) => void;
-  setCompany: (company: companyData) => void;
+  setCompany: (company: companyData | null) => void;
 }
 
 const DefaultEntities: DefaultEntitiesProps = {
@@ -32,7 +32,7 @@ const DefaultEntities: DefaultEntitiesProps = {
   setUser: (_user: userData) => {
     return;
   },
-  setCompany: (_company: companyData) => {
+  setCompany: (_company: companyData | null) => {
     return;
   },
 };
